@@ -16,14 +16,29 @@
  ******************************************************************************
  */
 
-//BUTTON ON
-
 #include "main.h"
+
+
+// PB7 - LD2
+// PA4 - BUTTON
+
+//INT HANDLER FOR BUTTON
+void EXTI4_IRQHandler(void);
 
 int main(void)
 {
-    /* Loop forever */
+    LD2_CONF();
+	BUTTON_CONF();
+	BUTTON_INT_CONF();
+
+	LD2_OFF;
+
 	while(1){
 
 	}
+}
+
+void EXTI4_IRQHandler(void){
+	Delay();
+	LD2_TOGGLE;
 }
