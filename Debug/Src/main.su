@@ -1,0 +1,8 @@
+../Drivers/CMSIS/Include/core_cm7.h:1896:22:__NVIC_EnableIRQ	16	static
+../Drivers/CMSIS/Include/core_cm7.h:2024:22:__NVIC_SetPriority	16	static
+../Inc/main.h:26:6:LD2_CONF	4	static
+../Inc/main.h:40:6:Delay	16	static
+../Inc/main.h:45:6:BUTTON_CONF	4	static
+../Inc/main.h:54:6:BUTTON_INT_CONF	8	static
+../Src/main.c:28:5:main	8	static
+../Src/main.c:41:6:EXTI4_IRQHandler	8	static

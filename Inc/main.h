@@ -14,8 +14,9 @@
 #define LD2_ON              GPIOB->BSRR |= GPIO_BSRR_BS7;
 #define LD2_OFF             GPIOB->BSRR |= GPIO_BSRR_BR7;
 #define PA4                 (1<<4)
-#define BUTTON_PRESSED      GPIOA->IDR & PA4
+#define BUTTON_PRESSED      !(GPIOA->IDR & PA4)
 #define LD2_TOGGLE          GPIOB->ODR ^= GPIO_ODR_OD7
+#define BUTTON_INT_CLEAR	EXTI->PR |= EXTI_PR_PR4;
 
 void LD2_CONF(void);
 void BUTTON_CONF(void);
@@ -42,7 +43,7 @@ void Delay(void){
 }
 
 void BUTTON_CONF(void){
-	//GPIO PORT B CLOCK ENABLE
+	//GPIO PORT A CLOCK ENABLE
 	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
 	//INPUT
 	GPIOA->MODER &= ~(GPIO_MODER_MODER4);
@@ -58,8 +59,8 @@ void BUTTON_INT_CONF(void){
 	//EXTI MASK DISABLE
 	EXTI->IMR |= EXTI_IMR_IM4;
 	//INT ON FALLING EDGE
-	EXTI->RTSR |= EXTI_FTSR_TR4;
-	EXTI->FTSR &= ~(EXTI_RTSR_TR4);
+	EXTI->FTSR |= EXTI_FTSR_TR4;
+	EXTI->RTSR &= ~(EXTI_RTSR_TR4);
 	//SET PRIORITY
 	NVIC_SetPriority (EXTI4_IRQn, 2);
 	//ENABLE INT

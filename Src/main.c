@@ -39,6 +39,10 @@ int main(void)
 }
 
 void EXTI4_IRQHandler(void){
+	while(BUTTON_PRESSED){
+		//WAIT
+	}
 	Delay();
 	LD2_TOGGLE;
+	BUTTON_INT_CLEAR;
 }
